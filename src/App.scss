@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Pattaya&display=swap");
+$medium: 950px;
+
+#root {
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.App {
+    min-height: 90vh;
+    min-width: 90vw;
+    font-family: "Pattaya";
+
+    .text__section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @media screen and (max-width: $medium) {
+            display: block;
+            text-align: center;
+        }
+
+        .text__container {
+            width: 50%;
+            @media screen and (max-width: $medium) {
+                width: 100%;
+            }
+
+            h4 {
+                font-size: 3rem;
+                color: rgb(92 138 222);
+            }
+            p {
+                font-size: 2rem;
+                @media screen and (max-width: $medium) {
+                    width: 85%;
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+
+    .timer__section {
+        display: flex;
+        padding: 3rem 2rem;
+        justify-content: space-evenly;
+
+        @media screen and (max-width: $medium) {
+            display: block;
+        }
+    }
+
+    .logo {
+        height: 10em;
+        padding: 1.5em;
+        will-change: filter;
+
+        &:hover {
+            filter: drop-shadow(0 0 2em #646cffaa);
+        }
+
+        .react:hover {
+            filter: drop-shadow(0 0 2em #61dafbaa);
+        }
+    }
+    #rocket__logo {
+        animation: 1s linear infinite alternate-reverse;
+        animation-name: rotate;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(10deg);
+    }
+}
