@@ -19,7 +19,9 @@ function App() {
   return (
     <div className="App" style={{ background: `url(${backgroundImage})` }}>
       <div>
-        <img src={rocketLogo} className="logo" id="rocket__logo" />
+        <div className="rocketlogo__container">
+          <img src={rocketLogo} className="logo" id="rocket__logo" />
+        </div>
       </div>
 
       <ModalAlert
