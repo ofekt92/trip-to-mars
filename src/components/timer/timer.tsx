@@ -10,13 +10,6 @@ export interface TimerProps {
     label?: string;
 }
 
-export interface TimerState {
-    time: number;
-    seconds: number;
-    minutes: number;
-}
-
-
 export const Timer: React.FC<TimerProps> = ({ timeInSeconds, onTimeExpired, label, timerId }) => {
     const { seconds, minutes, reset } = useTimer(timeInSeconds, timerId, onTimeExpired);
 
