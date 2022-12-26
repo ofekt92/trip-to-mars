@@ -24,7 +24,7 @@ export const useTimer = (timeInSeconds: number, timerId: string | number, onTime
 
     const [timeState, setTimeState] = React.useState<TimerState>({
         time,
-        seconds: getDefaultSeconds(time),
+        seconds: calculateSeconds(time),
         minutes: getDefaultMinutes(time)
     });
 
@@ -34,7 +34,7 @@ export const useTimer = (timeInSeconds: number, timerId: string | number, onTime
     }, []);
 
     React.useEffect(() => {
-        const timerIntervalId = setInterval(() => {
+        const timerIntervalId = setTimeout(() => {
             if (timeState.time === 0) {
                 localStorage.removeItem(timerValueKey);
 
@@ -43,25 +43,26 @@ export const useTimer = (timeInSeconds: number, timerId: string | number, onTime
                 }
                 return;
             }
+
             const newState = {
                 time: timeState.time - 1,
-                minutes: +(Math.floor((timeState.time - 1) / 60).toFixed(1)),
-                seconds: +(calculateSeconds(timeState.time).toFixed(1))
+                minutes: Math.floor((timeState.time - 1) / 60),
+                seconds: calculateSeconds(timeState.time),
             };
+
             setTimeState(newState);
             localStorage.setItem(timerValueKey, newState.time.toString());
         }, 1000);
 
-        return () => clearInterval(timerIntervalId);
-    }, [timeState]);
+        return () => clearTimeout(timerIntervalId);
+    }, [timeState.minutes, timeState.seconds, timeState.time]);
 
 
     const resetHandler = () => {
-        let originalTime = localStorage.getItem(originalTimerValueKey) ?? timeInSeconds;
-        originalTime = Number(originalTime);
+        const originalTime = +(localStorage.getItem(originalTimerValueKey) ?? timeInSeconds);
 
         setTimeState({
-            time: +originalTime,
+            time: originalTime,
             seconds: getDefaultSeconds(originalTime),
             minutes: getDefaultMinutes(originalTime)
         });

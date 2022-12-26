@@ -10,44 +10,30 @@ export interface TimerProps {
     label?: string;
 }
 
-export interface TimerState {
-    time: number;
-    seconds: number;
-    minutes: number;
-}
-
 
 export const Timer: React.FC<TimerProps> = ({ timeInSeconds, onTimeExpired, label, timerId }) => {
     const { seconds, minutes, reset } = useTimer(timeInSeconds, timerId, onTimeExpired);
 
-    const getTimeInTwoDigitsFormat = (time: number): string => {
-        const timer = time.toFixed(0);
-
-        if (timer.length === 1) {
-            return `0${timer}`;
-        } else {
-            return timer.toString();
-        }
-    }
+    const getTimeInTwoDigitsFormat = (timeUnit: number): string => timeUnit.toFixed(0).length === 1 ? `0${timeUnit}` : timeUnit.toFixed(0);
 
     const stringifiedMinutes = getTimeInTwoDigitsFormat(minutes);
     const stringifiedSeconds = getTimeInTwoDigitsFormat(seconds);
 
     return (
-        <div>
-            <h3 className="label">
+        <div className="timer__container">
+            <h3 className="timer__label">
                 {label}
             </h3>
-            <div className="timer">
-                <div className="digit">
+            <div className="timer__main">
+                <div className="timer__mainDigit">
                     {stringifiedMinutes}
                 </div>
                 <p>:</p>
-                <div className="digit">
+                <div className="timer__mainDigit">
                     {stringifiedSeconds}
                 </div>
             </div>
-            <button className="reset__button" onClick={reset}>RESET</button>
+            <button className="timer__resetButton" onClick={reset}>RESET</button>
         </div>
     )
 };

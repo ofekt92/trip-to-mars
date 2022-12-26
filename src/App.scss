@@ -3,7 +3,7 @@ $medium: 950px;
 
 #root {
     margin: 0 auto;
-    padding: 2rem;
+    // padding: 2rem;
     text-align: center;
 }
 
@@ -31,9 +31,14 @@ $medium: 950px;
             h4 {
                 font-size: 3rem;
                 color: rgb(92 138 222);
+
+                @media screen and (max-width: $medium) {
+                    line-height: 2.5rem;
+                }
             }
             p {
                 font-size: 2rem;
+                line-height: 1.8rem;
                 @media screen and (max-width: $medium) {
                     width: 85%;
                     margin: 0 auto;

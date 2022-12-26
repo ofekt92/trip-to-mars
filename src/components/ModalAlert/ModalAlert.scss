@@ -1,0 +1,64 @@
+$medium: 950px;
+$btnColor: #19e0e0;
+
+.ReactModal__Content {
+    
+    @media screen and (min-width: $medium) {
+        width: 25rem;
+    }
+}
+.modalHeader__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10%;
+    font-size: 1rem;
+    min-width: 100%;
+    padding-block: 1rem;
+    background-color: $btnColor;
+
+    .modalHeader__button {
+        background-color: $btnColor;
+    }
+
+    & > div {
+        padding-inline-start: 0.9rem;
+        font-size: 1.5rem;
+
+        @media screen and (min-width: $medium) {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.modalMain {
+    padding: 1.2rem;
+    font-size: 2rem;
+    display: flex;
+    text-align: center;
+    font-size: 1.5rem;
+
+    @media screen and (max-width: $medium) {
+        font-size: 1.2rem;
+    }
+}
+
+.modalFooter__container {
+    display: flex;
+    justify-content: center;
+    padding-block: 0 1rem;
+
+    @media screen and (max-width: $medium) {
+        font-size: 2rem;
+    }
+
+    .modalFooter__button {
+        background-color: $btnColor;
+        font-size: 1rem;
+        padding-inline: 2.5rem;
+
+        @media screen and (max-width: $medium) {
+            font-size: 1.2rem;
+        }
+    }
+}
